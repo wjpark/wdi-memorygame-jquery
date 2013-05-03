@@ -6,6 +6,8 @@ function smallGame (){
   var time = 0;
   var counter=setInterval(timer, 1000);
 
+  $("button").addClass("hide");
+
   function timer(){
     time +=1;
     if (count === 5){
@@ -47,6 +49,7 @@ function smallGame (){
         count += 1;
         if(count === 5) {
           $("#win").removeClass("hide");
+          $("button").removeClass("hide");
         }
       } else {
         $(this).addClass("revealed");
