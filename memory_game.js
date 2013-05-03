@@ -1,7 +1,19 @@
 
 
 function smallGame (){
-  $('#timer').removeClass("timer_hidden");
+  $('#timer').removeClass("hide");
+  var count = 0;
+  var time = 0;
+  var counter=setInterval(timer, 1000);
+
+  function timer(){
+    time +=1;
+    if (count === 5){
+     return time;
+    }
+    $("#timer").html("Timer: " + time + " secs");
+  }
+
   var letterArray = ["A", "A", "B", "B", "C", "C", "D", "D", "E", "E"];
   var shuffledArray = _.shuffle(letterArray);
   console.log(shuffledArray);
@@ -32,6 +44,10 @@ function smallGame (){
         $(".revealed").unbind('click mouseover');
         $(".revealed").unbind('click mouseover');
         $(".revealed").removeClass("hidden revealed");
+        count += 1;
+        if(count === 5) {
+          $("#win").removeClass("hide");
+        }
       } else {
         $(this).addClass("revealed");
         setTimeout(function(){$(".revealed").removeClass("revealed")}, 800);
