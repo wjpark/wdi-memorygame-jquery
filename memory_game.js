@@ -1,8 +1,7 @@
 
 
 function smallGame (){
-  var square1;
-  var square2;
+  $('#timer').removeClass("timer_hidden");
   var letterArray = ["A", "A", "B", "B", "C", "C", "D", "D", "E", "E"];
   var shuffledArray = _.shuffle(letterArray);
   console.log(shuffledArray);
@@ -28,6 +27,7 @@ function smallGame (){
     } else {
       if($(".revealed").html() === $(this).html()){
         $(this).addClass("matched");
+        $(this).removeClass("hidden");
         $(".revealed").addClass("matched");
         $(".revealed").unbind('click mouseover');
         $(".revealed").unbind('click mouseover');
