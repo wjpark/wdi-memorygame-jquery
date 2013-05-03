@@ -1,6 +1,7 @@
 
 
 function smallGame (){
+  $("#game_squares").html("");  //clears board
   $('#timer').removeClass("hide");
   var count = 0;
   var time = 0;
