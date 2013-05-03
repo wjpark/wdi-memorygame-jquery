@@ -8,39 +8,37 @@ function smallGame (){
   console.log(shuffledArray);
   for (var i = 0; i < shuffledArray.length; i += 1){
     var divElement = $("<div/>");
-    divElement.attr('class', 'hidden square');
+    divElement.attr('class', 'hidden');
     divElement.attr('data-id', i);
     var square = shuffledArray[i];
     divElement.append(square);
     $("#game_squares").append(divElement);
   }
-  $(".square").mouseover(function(){
+  $(".hidden").mouseover(function(){
     $(this).addClass("hover");
   });
 
-  $(".square").mouseout(function(){
+  $(".hidden").mouseout(function(){
     $(this).removeClass("hover");
   });
 
-  $(".square").on('click', function(){
-    $(this).removeClass("hidden");
-    square1 = 3;
-    console.log(square1);
-
+  $(".hidden").on('click', function(){
+    if($(".revealed").length === 0) {
+      $(this).addClass("revealed");
+    } else {
+      if($(".revealed").html() === $(this).html()){
+        $(this).addClass("matched");
+        $(".revealed").addClass("matched");
+        $(".revealed").unbind('click mouseover');
+        $(".revealed").unbind('click mouseover');
+        $(".revealed").removeClass("hidden revealed");
+      } else {
+        $(this).addClass("revealed");
+        setTimeout(function(){$(".revealed").removeClass("revealed")}, 800);
+      }
+    }
   });
 }
-
-function matchPair (square1, square2){
-  if(square1.innerHTML === square2.innerHTML){
-    square1.removeClass("hidden");
-    square2.removeClass("hidden");
-  } else {
-    square1.addClass("hidden");
-    square2.addClass("hidden");
-  }
-}
-
-
 
 $(document).ready(function(){
   var letterArray = [];
